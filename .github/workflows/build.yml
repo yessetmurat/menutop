@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    # The JSON project format needs Xcode 27.2; this image's default is 27.1.
+    runs-on: xcode-27
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_27.2.app
+
+      - name: Test
+        run: |
+          xcodebuild test \
+            -project Menutop.xcodeproj \
+            -scheme Menutop \
+            -destination 'platform=macOS' \
+            -derivedDataPath build/ci \
+            CODE_SIGN_IDENTITY=- \
+            CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM=

@@ -1,0 +1,14 @@
+cask "menutop" do
+  version "@VERSION@"
+  sha256 "@SHA256@"
+
+  url "@URL@"
+  name "Menutop"
+  desc "Menu bar monitor for Apple Silicon CPU, GPU, memory, power and temperature"
+  homepage "@HOMEPAGE@"
+
+  depends_on arch: :arm64
+  depends_on macos: :golden_gate
+
+  app "Menutop.app"
+end
