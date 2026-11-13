@@ -2,6 +2,8 @@
 
 A small menu bar app for Apple Silicon Macs that shows what [mactop](https://github.com/context-labs/mactop) shows, without a terminal. The menu bar holds only an icon. A click opens a window with plain numbers:
 
+<img src="docs/screenshot.png" alt="Menutop window" width="240">
+
 | Row | Meaning |
 |---|---|
 | CPU P-cores, CPU E-cores | busy share of the performance and the efficiency cores |
