@@ -1,0 +1,110 @@
+{
+  "default-configuration": "Debug",
+  "configurations": [
+    { "name": "Debug", "file": "Config/Base.xcconfig" },
+    { "name": "Release", "file": "Config/Base.xcconfig" },
+  ],
+  "localizations": {
+    "development": "en",
+    "supported": [
+      "Base",
+    ],
+  },
+  "files": [
+    {
+      "kind": "group",
+      "path": "Config",
+      "children": [
+        { "path": "Base.xcconfig" },
+      ],
+    }, {
+      "kind": "folder",
+      "path": "Menutop",
+      "target-membership": [ "Menutop" ],
+    }, {
+      "kind": "folder",
+      "path": "MenutopTests",
+      "target-membership": [ "MenutopTests" ],
+    }, {
+      "kind": "group",
+      "name": "Products",
+      "children": [
+        { "path": "<PRODUCTS>/Menutop.app", "id": "4D3E7A1B2C5F60718293A4B5", "type": "wrapper.application", "index": false },
+        { "path": "<PRODUCTS>/MenutopTests.xctest", "id": "5E4F8B2C3D60718293A4B5C6", "type": "wrapper.cfbundle", "index": false },
+      ],
+    },
+  ],
+  "targets": [
+    {
+      "name": "Menutop",
+      "id": "6F509C3D4E718293A4B5C6D7",
+      "product": "Products/Menutop.app",
+      "product-type": "application",
+      "legacy-provisioning-style": "automatic",
+      "build-phases": [
+        "compile-sources",
+        "resources",
+        "frameworks",
+      ],
+      "build-settings": {
+        "GENERATE_INFOPLIST_FILE": "YES",
+        "INFOPLIST_KEY_LSUIElement": "YES",
+        "INFOPLIST_KEY_CFBundleDisplayName": "Menutop",
+        "LD_RUNPATH_SEARCH_PATHS": [
+          "$(inherited)",
+          "@executable_path/../Frameworks",
+        ],
+        "SDKROOT": "macosx",
+      },
+    }, {
+      "name": "MenutopTests",
+      "id": "7A61AD4E5F8293A4B5C6D7E8",
+      "product": "Products/MenutopTests.xctest",
+      "product-type": "bundle.unit-test",
+      "legacy-provisioning-style": "automatic",
+      "dependencies": [
+        "Menutop",
+      ],
+      "build-phases": [
+        "compile-sources",
+        "resources",
+      ],
+      "build-settings": {
+        "BUNDLE_LOADER": "$(TEST_HOST)",
+        "GENERATE_INFOPLIST_FILE": "YES",
+        "LD_RUNPATH_SEARCH_PATHS": [
+          "$(inherited)",
+          "@executable_path/../Frameworks",
+          "@loader_path/../Frameworks",
+        ],
+        "PRODUCT_BUNDLE_IDENTIFIER": "app.menutop.mac.tests",
+        "SDKROOT": "macosx",
+        "TEST_HOST": "$(BUILT_PRODUCTS_DIR)/Menutop.app/Contents/MacOS/Menutop",
+      },
+    },
+  ],
+  "build-settings": {
+    "ALWAYS_SEARCH_USER_PATHS": "NO",
+    "CLANG_ENABLE_MODULES": "YES",
+    "CLANG_ENABLE_OBJC_ARC": "YES",
+    "COPY_PHASE_STRIP": "NO",
+    "DEBUG_INFORMATION_FORMAT[config=Debug]": "dwarf",
+    "DEBUG_INFORMATION_FORMAT[config=Release]": "dwarf-with-dsym",
+    "ENABLE_NS_ASSERTIONS[config=Release]": "NO",
+    "ENABLE_TESTABILITY[config=Debug]": "YES",
+    "GCC_C_LANGUAGE_STANDARD": "gnu11",
+    "GCC_OPTIMIZATION_LEVEL[config=Debug]": "0",
+    "GCC_PREPROCESSOR_DEFINITIONS[config=Debug]": [
+      "$(inherited)",
+      "DEBUG=1",
+    ],
+    "ONLY_ACTIVE_ARCH[config=Debug]": "YES",
+    "PRODUCT_NAME": "$(TARGET_NAME)",
+    "SDKROOT": "macosx",
+    "SWIFT_ACTIVE_COMPILATION_CONDITIONS[config=Debug]": "DEBUG",
+    "SWIFT_COMPILATION_MODE[config=Release]": "wholemodule",
+    "SWIFT_OPTIMIZATION_LEVEL[config=Debug]": "-Onone",
+    "SWIFT_OPTIMIZATION_LEVEL[config=Release]": "-O",
+  },
+  "last-upgrade": "27.2",
+}

@@ -1,0 +1,17 @@
+// Settings shared by every target. Owner-specific values live in Local.xcconfig.
+
+PRODUCT_BUNDLE_IDENTIFIER = app.menutop.mac
+MARKETING_VERSION = 0.1.0
+CURRENT_PROJECT_VERSION = 1
+MACOSX_DEPLOYMENT_TARGET = 27.0
+SWIFT_VERSION = 6.0
+SWIFT_STRICT_CONCURRENCY = complete
+CODE_SIGN_STYLE = Automatic
+ENABLE_HARDENED_RUNTIME = YES
+DEAD_CODE_STRIPPING = YES
+
+// The private libIOReport, declared in the bridging header, for the Neural Engine's energy.
+SWIFT_OBJC_BRIDGING_HEADER = Menutop/Metrics/IOReport/IOReport.h
+OTHER_LDFLAGS = $(inherited) -lIOReport
+
+#include? "Local.xcconfig"

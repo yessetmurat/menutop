@@ -1,0 +1,4 @@
+// Copy to Local.xcconfig (git-ignored) and set your Apple Developer team id.
+
+DEVELOPMENT_TEAM = <your team id>
+CODE_SIGN_IDENTITY = Apple Development
