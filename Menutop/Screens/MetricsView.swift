@@ -58,10 +58,12 @@ struct MetricsView: View {
                     }
             }
 
-            Button("Quit") {
+            Button("Quit Menutop") {
                 NSApp.terminate(nil)
             }
-            .buttonStyle(.borderless)
+            .buttonStyle(MenuItemButtonStyle(shortcut: "⌘Q"))
+            .keyboardShortcut("q")
+            .padding(.horizontal, -6)
         }
         .padding(14)
         .frame(width: 240)
