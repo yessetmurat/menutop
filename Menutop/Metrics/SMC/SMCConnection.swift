@@ -11,7 +11,7 @@ import IOKit
 /// temperature and power sensors.
 ///
 /// The SMC has no public API. Every call passes the 80-byte `SMCKeyData` struct of Apple's
-/// `AppleSMC` user client (the layout SMCKit and `mactop` use) to its method 2. The struct is
+/// `AppleSMC` user client to its method 2. The struct is
 /// built as raw bytes at fixed offsets, so its layout does not depend on Swift's.
 final class SMCConnection {
 
