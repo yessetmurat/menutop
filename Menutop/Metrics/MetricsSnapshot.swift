@@ -17,8 +17,6 @@ struct MetricsSnapshot: Equatable, Sendable {
     var efficiencyLoad: Double?
     /// Busy share of the GPU, 0 to 1.
     var gpuLoad: Double?
-    /// Neural Engine power, in watts.
-    var anePower: Double?
     var memory: MemoryUsage?
     /// The whole system's power, in watts.
     var systemPower: Double?

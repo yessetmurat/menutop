@@ -23,7 +23,6 @@ struct MetricsView: View {
                 row("CPU P-cores", MetricFormat.percent(snapshot.performanceLoad))
                 row("CPU E-cores", MetricFormat.percent(snapshot.efficiencyLoad))
                 row("GPU", MetricFormat.percent(snapshot.gpuLoad))
-                row("ANE", MetricFormat.watts(snapshot.anePower))
 
                 separator
 

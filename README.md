@@ -8,7 +8,6 @@ A small menu bar app for Apple Silicon Macs that shows what [mactop](https://git
 |---|---|
 | CPU P-cores, CPU E-cores | busy share of the performance and the efficiency cores |
 | GPU | GPU utilization |
-| ANE | Neural Engine power |
 | RAM | used of total memory, counted as Activity Monitor does (app + wired + compressed) |
 | Swap | swap in use |
 | Power | whole system power |
@@ -30,14 +29,11 @@ Requires an Apple Silicon Mac with macOS 27 or later.
 |---|---|
 | CPU P-cores, E-cores | `host_processor_info` tick deltas; core kind from `cluster-type` in the IORegistry device tree |
 | GPU | `Device Utilization %` of the `IOAccelerator` service |
-| ANE | IOReport `Energy Model` channels named `ANE*` |
 | RAM, Swap | `host_statistics64`, `hw.memsize`, `vm.swapusage` |
 | Power | SMC key `PSTR` |
 | CPU, GPU temperature | SMC keys `Tp*`, `Te*`, `Tf*` (CPU) and `Tg*` (GPU) |
 
-IOReport and the SMC are private, undocumented interfaces, so the app is not sandboxed and is not on the App Store, and a macOS update may break a row. A value that cannot be read shows `—`, never a guess.
-
-On macOS 27.2 the IOReport energy channels for the Neural Engine read 0 (`mactop` shows the same), so ANE usually shows `0.0 W`.
+The SMC is a private, undocumented interface, so the app is not sandboxed and is not on the App Store, and a macOS update may break a row. A value that cannot be read shows `—`, never a guess.
 
 ## Building
 

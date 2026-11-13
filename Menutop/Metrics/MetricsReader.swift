@@ -5,14 +5,13 @@
 //  Created by Yesset Murat on 13.11.2026.
 //
 
-/// Reads every source into a snapshot, off the main thread. Loads and power are measured
-/// between two reads, so the first read leaves them empty.
+/// Reads every source into a snapshot, off the main thread. Loads are measured between two
+/// reads, so the first read leaves them empty.
 actor MetricsReader {
 
     private let coreKinds = CoreKind.readAll()
     private let smc = SMCConnection()
     private let sensors: SMCSensors?
-    private let anePower = ANEPower()
     private var previousTicks: [CoreTicks]?
 
     init() {
@@ -31,7 +30,6 @@ actor MetricsReader {
             performanceLoad: load.performance,
             efficiencyLoad: load.efficiency,
             gpuLoad: GPUUtilization.read(),
-            anePower: anePower?.read(),
             memory: MemoryUsage.read(),
             systemPower: reading?.systemPower,
             cpuTemperature: reading?.cpuTemperature,

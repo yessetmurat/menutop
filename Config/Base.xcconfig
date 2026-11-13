@@ -14,8 +14,4 @@ DEAD_CODE_STRIPPING = YES
 // entitlement that Xcode injects by default.
 CODE_SIGN_INJECT_BASE_ENTITLEMENTS[config=Release] = NO
 
-// The private libIOReport, declared in the bridging header, for the Neural Engine's energy.
-SWIFT_OBJC_BRIDGING_HEADER = Menutop/Metrics/IOReport/IOReport.h
-OTHER_LDFLAGS = $(inherited) -lIOReport
-
 #include? "Local.xcconfig"
