@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// The window under the menu bar icon: the metrics as plain label and value rows, a line
-/// between the groups, and a quit button.
+/// between the groups, and a quit button. The battery group shows only on a Mac with one.
 struct MetricsView: View {
 
     let sampler: MetricsSampler
@@ -19,7 +19,7 @@ struct MetricsView: View {
         let snapshot = sampler.snapshot
 
         VStack(alignment: .leading, spacing: 10) {
-            Grid(alignment: .leading, horizontalSpacing: 16, verticalSpacing: 6) {
+            VStack(alignment: .leading, spacing: 6) {
                 row("CPU P-cores", MetricFormat.percent(snapshot.performanceLoad))
                 row("CPU E-cores", MetricFormat.percent(snapshot.efficiencyLoad))
                 row("GPU", MetricFormat.percent(snapshot.gpuLoad))
@@ -40,6 +40,14 @@ struct MetricsView: View {
                 row("Power", MetricFormat.watts(snapshot.systemPower))
                 row("CPU", MetricFormat.celsius(snapshot.cpuTemperature))
                 row("GPU", MetricFormat.celsius(snapshot.gpuTemperature))
+
+                if let battery = snapshot.battery {
+                    separator
+
+                    row("Battery health", MetricFormat.percent(battery.maximumCapacity))
+                    row("Battery cycles", MetricFormat.count(battery.cycleCount))
+                    row("Battery temperature", MetricFormat.celsius(snapshot.batteryTemperature))
+                }
             }
 
             Divider()
@@ -81,15 +89,18 @@ struct MetricsView: View {
             .padding(.vertical, 4)
     }
 
+    /// A label and its value at the right edge. Each row lays out on its own, so a long label
+    /// in one row does not take room from a long value in another.
     private func row(_ title: String, _ value: String) -> some View {
-        GridRow {
+        HStack(spacing: 0) {
             Text(title)
                 .foregroundStyle(.secondary)
+                .fixedSize()
+
+            Spacer(minLength: 16)
 
             Text(value)
                 .monospacedDigit()
-                .gridColumnAlignment(.trailing)
-                .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 }

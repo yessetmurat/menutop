@@ -17,6 +17,7 @@ import Testing
     #expect(MetricFormat.percent(nil) == "—")
     #expect(MetricFormat.watts(nil) == "—")
     #expect(MetricFormat.celsius(nil) == "—")
+    #expect(MetricFormat.count(nil) == "—")
     #expect(MetricFormat.gigabytes(nil) == "—")
     #expect(MetricFormat.gigabytes(used: nil, total: 1) == "—")
 }
@@ -27,6 +28,11 @@ import Testing
 
 @Test func celsiusRoundsToWholeDegree() {
     #expect(MetricFormat.celsius(47.6) == "48 °C")
+}
+
+@Test func countIsWholeNumber() {
+    #expect(MetricFormat.count(119) == "119")
+    #expect(MetricFormat.count(1_204) == "1204")
 }
 
 @Test func gigabytesUseBinaryUnits() {

@@ -24,4 +24,8 @@ struct MetricsSnapshot: Equatable, Sendable {
     var cpuTemperature: Double?
     /// Mean of the GPU sensors, in °C.
     var gpuTemperature: Double?
+    /// Nil on a Mac without a battery.
+    var battery: BatteryHealth?
+    /// Mean of the battery sensors, in °C.
+    var batteryTemperature: Double?
 }

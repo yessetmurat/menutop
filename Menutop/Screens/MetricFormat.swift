@@ -40,6 +40,15 @@ enum MetricFormat {
         return "\(number(value, decimals: 0)) °C"
     }
 
+    /// A whole count without grouping, such as `119`.
+    static func count(_ value: Int?) -> String {
+        guard let value else {
+            return missing
+        }
+
+        return String(value)
+    }
+
     /// Bytes as binary gigabytes with one decimal, such as `0.0 GB`.
     static func gigabytes(_ bytes: Double?) -> String {
         guard let bytes else {

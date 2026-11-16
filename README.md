@@ -12,6 +12,11 @@ A small menu bar app for Apple Silicon Macs that shows the machine's key metrics
 | Swap | swap in use |
 | Power | whole system power |
 | CPU, GPU | mean temperature of the CPU core and the GPU sensors |
+| Battery health | nominal charge capacity of the design capacity, as System Settings shows it |
+| Battery cycles | charge cycle count |
+| Battery temperature | mean temperature of the battery sensors |
+
+The battery rows show only on a Mac with a battery.
 
 Values refresh once per second while the window is open; when it is closed, Menutop reads nothing. It needs no sudo, helper or setup. The window has a Launch at login switch.
 
@@ -32,6 +37,8 @@ Requires an Apple Silicon Mac with macOS 27 or later.
 | RAM, Swap | `host_statistics64`, `hw.memsize`, `vm.swapusage` |
 | Power | SMC key `PSTR` |
 | CPU, GPU temperature | SMC keys `Tp*`, `Te*`, `Tf*` (CPU) and `Tg*` (GPU) |
+| Battery health, cycles | `CycleCount` and, inside `BatteryData`, `NominalChargeCapacity` and `DesignCapacity` of the `AppleSmartBattery` service |
+| Battery temperature | SMC keys `TB*` |
 
 The SMC is a private, undocumented interface, so the app is not sandboxed and is not on the App Store, and a macOS update may break a row. A value that cannot be read shows `—`, never a guess.
 

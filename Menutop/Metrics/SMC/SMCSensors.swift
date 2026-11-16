@@ -5,7 +5,8 @@
 //  Created by Yesset Murat on 13.11.2026.
 //
 
-/// The SMC keys this app reads: CPU and GPU temperature sensors and the system's power.
+/// The SMC keys this app reads: CPU, GPU and battery temperature sensors and the system's
+/// power.
 struct SMCSensors {
 
     /// What the sensors read at one moment; nil where no key gave a valid value.
@@ -13,11 +14,13 @@ struct SMCSensors {
 
         var cpuTemperature: Double?
         var gpuTemperature: Double?
+        var batteryTemperature: Double?
         var systemPower: Double?
     }
 
     private static let cpuPrefixes = ["Tp", "Te", "Tf"]
     private static let gpuPrefixes = ["Tg"]
+    private static let batteryPrefix = "TB"
     private static let systemPowerKey = "PSTR"
     private static let maximumTemperature = 150.0
 
@@ -25,11 +28,14 @@ struct SMCSensors {
     let cpuKeys: [String]
     /// GPU temperature keys (`Tg`), in the SMC's order.
     let gpuKeys: [String]
+    /// Battery temperature keys (`TB`), in the SMC's order; none on a Mac without a battery.
+    let batteryKeys: [String]
 
     /// Picks the sensors out of every key the SMC has.
     init(keys: [String]) {
         cpuKeys = keys.filter { key in Self.cpuPrefixes.contains { key.hasPrefix($0) } }
         gpuKeys = keys.filter { key in Self.gpuPrefixes.contains { key.hasPrefix($0) } }
+        batteryKeys = keys.filter { $0.hasPrefix(Self.batteryPrefix) }
     }
 
     /// The mean of the readings that are real temperatures: above 0 and below 150 °C. A
@@ -48,6 +54,7 @@ struct SMCSensors {
         Reading(
             cpuTemperature: Self.average(cpuKeys.map { connection.read($0)?.number }),
             gpuTemperature: Self.average(gpuKeys.map { connection.read($0)?.number }),
+            batteryTemperature: Self.average(batteryKeys.map { connection.read($0)?.number }),
             systemPower: Self.power(connection.read(Self.systemPowerKey)?.number)
         )
     }

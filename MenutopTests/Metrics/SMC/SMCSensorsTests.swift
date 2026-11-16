@@ -15,11 +15,12 @@ import Testing
     #expect(SMCSensors.average([]) == nil)
 }
 
-@Test func keysSplitIntoCpuAndGpu() {
+@Test func keysSplitIntoCpuGpuAndBattery() {
     let sensors = SMCSensors(keys: ["Tp01", "Te05", "Tf0A", "Tg0K", "TB0T", "PSTR"])
 
     #expect(sensors.cpuKeys == ["Tp01", "Te05", "Tf0A"])
     #expect(sensors.gpuKeys == ["Tg0K"])
+    #expect(sensors.batteryKeys == ["TB0T"])
 }
 
 @Test func systemPowerDropsJunk() {

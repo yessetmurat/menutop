@@ -33,7 +33,9 @@ actor MetricsReader {
             memory: MemoryUsage.read(),
             systemPower: reading?.systemPower,
             cpuTemperature: reading?.cpuTemperature,
-            gpuTemperature: reading?.gpuTemperature
+            gpuTemperature: reading?.gpuTemperature,
+            battery: BatteryHealth.read(),
+            batteryTemperature: reading?.batteryTemperature
         )
     }
 }
